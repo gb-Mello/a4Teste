@@ -1,0 +1,95 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">SantLibray</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#" (click)="clickHome()" >Home</a></li>
+      <li><a href="#" (click)="clickCliente()">Buscar Clientes</a></li>
+      <li><a href="#" (click)="clickLivros()">Buscar Livros</a></li>
+    </ul>
+
+    <form *ngIf=isCliente class="navbar-form navbar-left" (submit)="buscaCliente(name.value)">
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Digite o nome" #name>
+      </div>
+      <button  type="submit" class="btn btn-default">Buscar Cliente</button>
+    </form>
+
+    <form *ngIf=isLivro class="navbar-form navbar-left"  (submit)="buscaLivro(title.value)">
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Digite o titulo" #title>
+      </div>
+      <button type="submit" class="btn btn-default">Buscar Livro</button>
+    </form>
+  </div>
+</nav>
+
+
+<div *ngIf=isHome style="text-align:center">
+    <h1>
+      Bem vindo à {{ title }}!
+    </h1>
+    <h2>Clique na busca de livros ou na busca de clientes</h2>
+    <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+  </div>
+
+<div *ngIf=isCliente>
+    <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>NOME COMPLETO</th>
+            <th>GÊNERO</th>
+            <th>IDADE</th>
+            <th>EMAIL</th>
+            <th>PHONE</th>
+            <th>USERNAME</th>
+          </tr>
+        </thead> 
+        <tbody *ngFor="let post of posts">
+            <tr>
+              <th scope="row">{{post.id}}</th>
+              <td>{{post.fullName}}</td>
+              <td>{{post.gender}}</td>
+              <td>{{post.age}}</td>
+              <td>{{post.email}}</td>
+              <td>{{post.phone}}</td>
+              <td>{{post.username}}</td>
+            </tr>
+         <tbody>
+    </table>
+  <h4></h4>
+</div>
+
+<div *ngIf=isLivro>
+    <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>TÍTULO</th>
+            <th>AUTOR</th>
+            <th>ANO DE PUBLICAÇÃO</th>
+            <th>PREÇO</th>
+            <th>AVALIAÇÃO</th>
+          </tr>
+        </thead> 
+        <tbody *ngFor="let livro of livros">
+            <tr>
+              <th scope="row">{{livro.id}}</th>
+              <td>{{livro.title}}</td>
+              <td>{{livro.author}}</td>
+              <td>{{livro.yearPublished}}</td>
+              <td>{{livro.price}}</td>
+              <td>{{livro.rating}}</td>
+            </tr>
+         <tbody>
+    </table>
+  
+</div>
+<h4 *ngIf=isNull>Melhore a busca</h4>
+
